@@ -246,6 +246,46 @@ def longtail_links_html(name: str) -> str:
     )
 
 
+# 통합 기본 요금표 (메인 + 전 지역/역세권/생활권 공통). class="pricing"이므로
+# 본문 글자수 측정에서는 제외되어 색인 본문 분량에 영향을 주지 않는다.
+def pricing_table_html() -> str:
+    return (
+        '<section class="pricing">'
+        '<div class="pricing-head">'
+        '<h2 class="pricing-title">코스 시간으로 보는 기본 요금</h2>'
+        '<p class="pricing-sub">관리 시간(60·90·120분)을 기준으로 정리한 기본 금액입니다. '
+        '표시되지 않은 별도 비용은 두지 않는 것을 원칙으로 안내합니다.</p>'
+        "</div>"
+        '<div class="price-cards">'
+        '<div class="price-card">'
+        '<p class="price-name">60분 코스</p>'
+        '<p class="price-amount">90,000<span class="price-won">원</span></p>'
+        '<p class="price-duration">60분</p>'
+        '<p class="price-desc">핵심 부위 위주 가벼운 이완</p>'
+        f'<a class="price-cta" href="tel:{PHONE}">예약 문의</a>'
+        "</div>"
+        '<div class="price-card price-card-featured">'
+        '<span class="price-badge">추천</span>'
+        '<p class="price-name">90분 코스</p>'
+        '<p class="price-amount">150,000<span class="price-won">원</span></p>'
+        '<p class="price-duration">90분</p>'
+        '<p class="price-desc">전신 균형 표준 구성·아로마 포함</p>'
+        f'<a class="price-cta price-cta-featured" href="tel:{PHONE}">예약 문의</a>'
+        "</div>"
+        '<div class="price-card">'
+        '<p class="price-name">120분 코스</p>'
+        '<p class="price-amount">180,000<span class="price-won">원</span></p>'
+        '<p class="price-duration">120분</p>'
+        '<p class="price-desc">구석구석 집중하는 프리미엄 구성</p>'
+        f'<a class="price-cta" href="tel:{PHONE}">예약 문의</a>'
+        "</div>"
+        "</div>"
+        '<p class="pricing-foot">방문 지역과 시간대, 이동 거리에 따라 최종 금액은 통화 시 확정됩니다. '
+        '<a href="/reservation/">요금·예약 기준 자세히 보기 →</a></p>'
+        "</section>"
+    )
+
+
 def render_page(page: dict) -> str:
     path = page["path"]
     title = page["title"]
@@ -284,6 +324,15 @@ def render_page(page: dict) -> str:
         rating_val, rating_cnt = make_rating(path)
         region_rating = (rating_val, rating_cnt)
         rating_html = rating_badge_html(rating_val, rating_cnt, region_name)
+
+    # 통합 기본 요금표: 기존 .pricing 블록을 새 요금표로 교체하고,
+    # 요금표가 없는 메인(hero) 페이지에는 본문 끝에 추가한다.
+    pricing = pricing_table_html()
+    if '<section class="pricing">' in body:
+        body = re.sub(r'<section class="pricing">.*?</section>',
+                      lambda m: pricing, body, count=1, flags=re.S)
+    elif hero:
+        body = body + pricing
 
     body, toc_items = inject_toc(body)
     toc_html = render_toc(toc_items)
@@ -514,7 +563,7 @@ def build() -> None:
     for p, c, r in sorted(report):
         flag = "" if (r == "noindex" or MIN_INDEX_CHARS <= c <= 2500) else "  ⚠"
         print(f"{p.ljust(width)}  {str(c).rjust(5)}  {r}{flag}")
-    print(f"\n{len(report)} pages built, {len(sitemap_urls)} in sitemap.")
+    print(f"\n{len(report)} pages built, {len(index_pages)} in sitemap.")
 
 
 if __name__ == "__main__":
