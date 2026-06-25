@@ -7,3 +7,6 @@ __pycache__/
 .venv
 build/
 dist/
+
+# 구글 Indexing API 서비스 계정 키 (커밋 금지)
+tools/google-sa.json

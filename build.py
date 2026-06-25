@@ -7,6 +7,7 @@ content/ 패키지의 페이지 정의를 읽어 정적 HTML을 생성한다.
   - 본문 텍스트 2,000자 미만 페이지는 robots noindex 처리
   - sitemap.xml 에는 index 허용 페이지만 포함
 """
+import datetime
 import hashlib
 import html
 import json
@@ -19,7 +20,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from content import PAGES
 from content.site import (BASE_URL, BRAND, BRAND_MARK, NAV, PHONE,
-                          PHONE_DISPLAY, HOME, TELEGRAM_BUILD, TELEGRAM_PARTNER)
+                          PHONE_DISPLAY, HOME, TELEGRAM_BUILD, TELEGRAM_PARTNER,
+                          NAVER_VERIFICATION, GOOGLE_VERIFICATION, INDEXNOW_KEY)
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 # Cloudflare Pages가 빌드를 실행하지 않고 저장소 루트를 그대로 배포하므로
@@ -302,6 +304,13 @@ def render_page(page: dict) -> str:
                 region_rating[0], region_rating[1]))
         auto_schema = "".join(_ld(b) for b in blocks)
 
+    # 검색엔진 소유확인 메타 (네이버/구글)
+    verify_meta = ""
+    if NAVER_VERIFICATION:
+        verify_meta += f'<meta name="naver-site-verification" content="{NAVER_VERIFICATION}">\n'
+    if GOOGLE_VERIFICATION:
+        verify_meta += f'<meta name="google-site-verification" content="{GOOGLE_VERIFICATION}">\n'
+
     return f"""<!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -311,6 +320,7 @@ def render_page(page: dict) -> str:
 <meta name="description" content="{desc}">
 {robots}
 <link rel="canonical" href="{canonical}">
+{verify_meta}<link rel="alternate" type="application/rss+xml" title="{BRAND} 업데이트" href="/rss.xml">
 <meta property="og:type" content="website">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
@@ -420,7 +430,11 @@ def render_page(page: dict) -> str:
 
 def build() -> None:
     report = []
-    sitemap_urls = []
+    index_pages = []  # (url, title, desc) — 색인 허용 페이지
+    base = BASE_URL.rstrip("/")
+    now = datetime.datetime.now(datetime.timezone.utc)
+    lastmod = now.strftime("%Y-%m-%d")
+    rfc822 = now.strftime("%a, %d %b %Y %H:%M:%S +0000")
 
     # public 디렉터리가 없으면 생성
     os.makedirs(PUBLIC_DIR, exist_ok=True)
@@ -436,12 +450,13 @@ def build() -> None:
         chars = text_length(page["body"])
         noindex = page.get("noindex", False) or chars < MIN_INDEX_CHARS
         if not noindex:
-            sitemap_urls.append(BASE_URL.rstrip("/") + "/" + path)
+            index_pages.append((base + "/" + path, page["title"], page["desc"]))
         report.append((path or "/", chars, "noindex" if noindex else "index"))
 
-    # sitemap.xml
+    # sitemap.xml (lastmod 포함)
     urls = "\n".join(
-        f"  <url><loc>{u}</loc></url>" for u in sitemap_urls
+        f"  <url><loc>{u}</loc><lastmod>{lastmod}</lastmod></url>"
+        for u, _, _ in index_pages
     )
     with open(os.path.join(PUBLIC_DIR, "sitemap.xml"), "w", encoding="utf-8") as f:
         f.write(
@@ -450,11 +465,45 @@ def build() -> None:
             f"{urls}\n</urlset>\n"
         )
 
-    # robots.txt
+    # rss.xml (RSS 2.0) — 새 글/업데이트 피드 (네이버·구글·빙 피드 구독 및 색인 보조)
+    items = "\n".join(
+        "  <item>\n"
+        f"    <title>{html.escape(t)}</title>\n"
+        f"    <link>{u}</link>\n"
+        f"    <guid isPermaLink=\"true\">{u}</guid>\n"
+        f"    <description>{html.escape(d)}</description>\n"
+        f"    <pubDate>{rfc822}</pubDate>\n"
+        "  </item>"
+        for u, t, d in index_pages
+    )
+    with open(os.path.join(PUBLIC_DIR, "rss.xml"), "w", encoding="utf-8") as f:
+        f.write(
+            '<?xml version="1.0" encoding="UTF-8"?>\n'
+            '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n'
+            "<channel>\n"
+            f"  <title>{html.escape(BRAND)} · 의정부 출장마사지·홈타이 안내</title>\n"
+            f"  <link>{base}/</link>\n"
+            f'  <atom:link href="{base}/rss.xml" rel="self" type="application/rss+xml"/>\n'
+            "  <description>의정부 출장마사지·홈타이 지역·역세권·생활권 안내 업데이트</description>\n"
+            "  <language>ko</language>\n"
+            f"  <lastBuildDate>{rfc822}</lastBuildDate>\n"
+            f"{items}\n"
+            "</channel>\n</rss>\n"
+        )
+
+    # IndexNow 키 파일 (루트에 노출 → 빙·네이버 등이 소유권 확인)
+    if INDEXNOW_KEY:
+        with open(os.path.join(PUBLIC_DIR, f"{INDEXNOW_KEY}.txt"),
+                  "w", encoding="utf-8") as f:
+            f.write(INDEXNOW_KEY + "\n")
+
+    # robots.txt — 사이트맵·RSS 안내, 전체 크롤 허용
     with open(os.path.join(PUBLIC_DIR, "robots.txt"), "w", encoding="utf-8") as f:
         f.write(
             "User-agent: *\nAllow: /\n\n"
-            f"Sitemap: {BASE_URL.rstrip('/')}/sitemap.xml\n"
+            "# 네이버 검색로봇\nUser-agent: Yeti\nAllow: /\n\n"
+            f"Sitemap: {base}/sitemap.xml\n"
+            f"Sitemap: {base}/rss.xml\n"
         )
 
     # .nojekyll (GitHub Pages)

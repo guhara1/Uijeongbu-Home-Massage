@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
 
+# 네이버 검색로봇
+User-agent: Yeti
+Allow: /
+
 Sitemap: https://uijeongbu-home-massage.pages.dev/sitemap.xml
+Sitemap: https://uijeongbu-home-massage.pages.dev/rss.xml

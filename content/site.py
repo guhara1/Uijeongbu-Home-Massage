@@ -10,6 +10,13 @@ PHONE_DISPLAY = "0508-202-4719"
 # 메인 진입 경로 (의정부 홈 = 사이트 루트)
 HOME = "/"
 
+# 검색엔진 사이트 소유확인
+NAVER_VERIFICATION = "fe84041b6962ae75f891ac0df183c7854db3377b"
+GOOGLE_VERIFICATION = ""  # 구글 서치콘솔 메타 발급 시 입력
+
+# IndexNow 키 (빙·네이버·얀덱스 등 즉시 색인 통보). 루트에 <KEY>.txt 로도 노출된다.
+INDEXNOW_KEY = "6b1bf68219744b03965fe2ec423badb037c793c11e1649f7ba6f1ecc29f9e207"
+
 # 외부 문의 링크 (텔레그램)
 TELEGRAM_BUILD = "https://t.me/googleseolab"     # 웹사이트 제작문의
 TELEGRAM_PARTNER = "https://t.me/googleseolab"   # 제휴문의

@@ -67,11 +67,43 @@ python3 build.py
 
 - 메인 1 + 지역 16 + 역세권 20 + 생활권 13 + 정보 5 = **55개**
 
+## 빠른 색인(인덱싱) 설정
+
+빌드 시 다음이 자동 생성된다:
+- `sitemap.xml` — `<lastmod>` 포함, 색인 허용 페이지 전체
+- `rss.xml` — RSS 2.0 피드(모든 페이지에 autodiscovery `<link rel="alternate">` 삽입)
+- `robots.txt` — 전체 크롤 허용 + 네이버(Yeti) 명시 + `sitemap.xml`·`rss.xml` 안내
+- `<INDEXNOW_KEY>.txt` — IndexNow 소유권 확인용 키 파일(루트 노출)
+- 모든 페이지 `<head>`에 `naver-site-verification` 메타(구글은 `GOOGLE_VERIFICATION` 입력 시 함께 출력)
+
+### 소유확인 / 사이트맵 제출
+1. **네이버 서치어드바이저** — 사이트 등록 후 소유확인(메타 태그 이미 삽입됨) → `sitemap.xml`, `rss.xml` 제출
+2. **구글 서치콘솔** — 속성 등록(필요 시 `content/site.py`의 `GOOGLE_VERIFICATION`에 메타 키 입력 후 재빌드) → `sitemap.xml` 제출
+3. **빙 웹마스터** — 사이트 등록 → 사이트맵 제출(IndexNow와 연동)
+
+### IndexNow (빙·네이버·얀덱스 즉시 통보)
+글을 올리거나 수정할 때마다 즉시 색인을 통보한다.
+
+```bash
+python build.py            # 사이트 재생성 (sitemap·rss·키파일 갱신)
+python tools/indexnow.py   # sitemap.xml의 모든 URL을 IndexNow로 일괄 통보
+# 특정 URL만:
+python tools/indexnow.py https://uijeongbu-home-massage.pages.dev/gyeonggi/uijeongbu/minrak-dong/
+```
+> 키 파일(`/<INDEXNOW_KEY>.txt`)이 실제 배포되어 열려야 통보가 수락된다. 첫 배포 후 한 번 `python tools/indexnow.py`를 실행하면 전체 URL이 빙·네이버에 즉시 전달된다.
+
+### 구글 Indexing API (선택, 구글은 IndexNow 미참여)
+`tools/google_indexing.py` — 서비스 계정으로 구글에 즉시 색인 통보.
+설정: Google Cloud에서 Indexing API 사용 설정 → 서비스 계정 JSON을 `tools/google-sa.json`(커밋 제외)으로 저장 → Search Console 속성에 서비스 계정을 소유자로 추가 → `pip install google-auth requests` → `python tools/google_indexing.py`.
+
+> 구글·빙의 익명 **sitemap ping** 엔드포인트는 2023년 폐지되었으므로, 구글은 서치콘솔/ Indexing API, 빙·네이버는 IndexNow를 사용한다.
+
 ## 배포 전 할 일
 
 1. `content/site.py`의 `BASE_URL`을 실제 도메인으로 변경 후 `python3 build.py` 재실행
-2. Google Search Console에 `sitemap.xml` 제출
-3. 텔레그램 문의 링크(`TELEGRAM_BUILD`, `TELEGRAM_PARTNER`)를 실제 계정으로 확인
+2. 네이버 서치어드바이저·구글 서치콘솔·빙 웹마스터에 사이트 등록 및 `sitemap.xml`/`rss.xml` 제출
+3. 첫 배포 후 `python tools/indexnow.py` 1회 실행(전체 URL 즉시 통보)
+4. 텔레그램 문의 링크(`TELEGRAM_BUILD`, `TELEGRAM_PARTNER`)를 실제 계정으로 확인
 
 ## 특징
 
