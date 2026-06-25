@@ -1024,3 +1024,78 @@ strong {
 .page-toc, .breadcrumb {
   position: relative;
 }
+
+/* ── 평점 배지 (가시 후기 점수 — 구조화 데이터 근거) ── */
+.rating-badge {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  margin: 4px 0 22px;
+  padding: 10px 16px;
+  background: var(--glass);
+  border: 1px solid var(--glass-line);
+  border-left: 3px solid var(--gold);
+  border-radius: 10px;
+  font-size: 0.92rem;
+}
+.rating-badge-hero {
+  margin: 18px 0 8px;
+  background: rgba(255, 255, 255, 0.06);
+}
+.rating-stars {
+  color: var(--gold-soft);
+  letter-spacing: 2px;
+  font-size: 0.95rem;
+  text-shadow: 0 0 10px rgba(212, 175, 106, 0.45);
+}
+.rating-score { color: var(--text); font-weight: 700; }
+.rating-score strong {
+  color: var(--orange-light);
+  font-size: 1.18rem;
+  font-weight: 900;
+  margin-right: 3px;
+}
+.rating-out { color: var(--text-mute); font-weight: 500; font-size: 0.82rem; }
+.rating-count { color: var(--text-dim); font-size: 0.82rem; }
+
+/* ── 롱테일 주제 내부링크 블록 ── */
+.longtail-links {
+  background-image: var(--overlay-warm);
+}
+.longtail-links ul, .longtail-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 10px;
+  padding: 0;
+  margin-top: 8px;
+}
+.longtail-links li, .longtail-list li {
+  padding: 0;
+}
+.longtail-links li a, .longtail-list li a {
+  display: block;
+  padding: 12px 14px 12px 34px;
+  position: relative;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  color: var(--text);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  transition: var(--transition);
+}
+.longtail-links li a::before, .longtail-list li a::before {
+  content: "→";
+  position: absolute;
+  left: 14px;
+  color: var(--orange-primary);
+  font-weight: 800;
+}
+.longtail-links li a:hover, .longtail-list li a:hover {
+  border-color: var(--orange-primary);
+  color: var(--orange-light);
+  box-shadow: var(--shadow-glow);
+  transform: translateX(2px);
+}

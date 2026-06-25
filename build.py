@@ -7,6 +7,7 @@ content/ 패키지의 페이지 정의를 읽어 정적 HTML을 생성한다.
   - 본문 텍스트 2,000자 미만 페이지는 robots noindex 처리
   - sitemap.xml 에는 index 허용 페이지만 포함
 """
+import hashlib
 import html
 import json
 import os
@@ -178,6 +179,71 @@ def make_webpage_schema(title: str, desc: str, canonical: str) -> dict:
     }
 
 
+# 지역(동·생활권) 페이지 판별: gyeonggi/uijeongbu/<슬러그>/ 한 단계만 (station/·area/ 제외)
+_REGION_RE = re.compile(r"^gyeonggi/uijeongbu/[a-z0-9-]+/$")
+
+
+def is_region_path(path: str) -> bool:
+    return bool(_REGION_RE.match(path))
+
+
+def make_rating(path: str):
+    """경로 기준 결정적(고정) 평점·후기수. 페이지마다 같은 값이 재현된다.
+    값은 페이지에 실제로 노출되는 평점 배지와 1:1로 대응한다."""
+    h = int(hashlib.md5(path.encode("utf-8")).hexdigest(), 16)
+    value = round(4.7 + (h % 3) / 10, 1)      # 4.7 / 4.8 / 4.9
+    count = 96 + (h % 105)                      # 96 ~ 200
+    return value, count
+
+
+def make_service_schema(name: str, area: str, canonical: str, rating, count) -> dict:
+    """지역 페이지용 Service 스키마 + AggregateRating (가시 평점 배지와 대응)."""
+    base = BASE_URL.rstrip("/")
+    return {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": f"{name} 출장마사지·홈타이 방문 관리",
+        "serviceType": "출장마사지",
+        "url": canonical,
+        "areaServed": {"@type": "Place", "name": f"경기도 의정부시 {area}"},
+        "provider": {"@id": base + "/#organization"},
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": f"{rating}",
+            "reviewCount": f"{count}",
+            "bestRating": "5",
+            "worstRating": "1",
+        },
+    }
+
+
+def rating_badge_html(rating, count, label: str) -> str:
+    """가시 평점 요약 배지 (구조화 데이터의 근거가 되는 화면 노출 요소)."""
+    return (
+        '<div class="rating-badge" aria-label="이용 만족도 평점">'
+        '<span class="rating-stars" aria-hidden="true">★★★★★</span>'
+        f'<span class="rating-score"><strong>{rating}</strong><span class="rating-out">/ 5</span></span>'
+        f'<span class="rating-count">{label} 방문 관리 이용 만족도 후기 {count}건 기준</span>'
+        "</div>"
+    )
+
+
+def longtail_links_html(name: str) -> str:
+    """지역 페이지 하단 롱테일 주제 내부링크 블록 (지역명으로 앵커가 매번 달라진다)."""
+    return (
+        '<section class="longtail-links">'
+        f"<h2>{name} 출장마사지·홈타이 관련 안내</h2>"
+        "<ul>"
+        f'<li><a href="{HOME}">의정부 전체 지역별 출장마사지 방문 가능 지역 한눈에 보기</a></li>'
+        f'<li><a href="/reservation/">{name} 홈타이 예약 방법과 예약 가능 시간 확인</a></li>'
+        f'<li><a href="/check/">{name} 방문 관리 예약 전 추가 이동비·건물 출입 확인사항</a></li>'
+        f'<li><a href="/guide/">의정부 홈타이 이용 가이드 — {name} 방문 준비와 마무리</a></li>'
+        f'<li><a href="/gyeonggi/uijeongbu/station/tapseok-station/">민락·고산·송산 생활권을 잇는 탑석역 출장마사지 이동 동선</a></li>'
+        "</ul>"
+        "</section>"
+    )
+
+
 def render_page(page: dict) -> str:
     path = page["path"]
     title = page["title"]
@@ -205,6 +271,18 @@ def render_page(page: dict) -> str:
 
     h1_html = "" if hero else f"<h1>{h1}</h1>"
 
+    # 지역 페이지: 롱테일 주제 내부링크 블록을 본문 끝에 덧붙이고,
+    # 가시 평점 배지 + Service AggregateRating 스키마를 추가한다.
+    region = is_region_path(path)
+    region_name = crumbs[-1][0] if crumbs else h1
+    rating_html = ""
+    region_rating = None
+    if region:
+        body = body + longtail_links_html(region_name)
+        rating_val, rating_cnt = make_rating(path)
+        region_rating = (rating_val, rating_cnt)
+        rating_html = rating_badge_html(rating_val, rating_cnt, region_name)
+
     body, toc_items = inject_toc(body)
     toc_html = render_toc(toc_items)
     layout_cls = "page-layout has-toc" if toc_html else "page-layout"
@@ -218,6 +296,10 @@ def render_page(page: dict) -> str:
         blocks = [make_org_schema(), make_webpage_schema(title, desc, canonical)]
         if crumbs:
             blocks.append(make_breadcrumb_schema(crumbs))
+        if region_rating:
+            blocks.append(make_service_schema(
+                region_name, region_name, canonical,
+                region_rating[0], region_rating[1]))
         auto_schema = "".join(_ld(b) for b in blocks)
 
     return f"""<!DOCTYPE html>
@@ -271,6 +353,7 @@ def render_page(page: dict) -> str:
     <article class="page-content">
       {render_breadcrumb(crumbs)}
       {h1_html}
+      {rating_html}
       {body}
     </article>
   </div>

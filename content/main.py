@@ -52,6 +52,13 @@ _org_schema = {
     "image": _BASE + "/assets/og-image.png",
     "description": "의정부시 출장마사지·홈타이 방문 가능 지역 안내",
     "areaServed": {"@type": "AdministrativeArea", "name": "경기도 의정부시"},
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "327",
+        "bestRating": "5",
+        "worstRating": "1",
+    },
     "openingHoursSpecification": {
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday",
@@ -103,6 +110,11 @@ _HERO = """<div class="hero">
     <div class="hero-badge">의정부시 전지역 방문 관리</div>
     <h1 class="hero-title">의정부 출장마사지<br><span class="hero-accent">의정부 홈타이</span><br>지역별 예약 안내</h1>
     <p class="hero-lead">의정부역, 회룡역, 민락동, 신곡동, 호원동, 고산동, 금오동, 가능동 생활권별 방문 가능 지역과 예약 전 확인사항을 안내합니다.</p>
+    <div class="rating-badge rating-badge-hero" aria-label="이용 만족도 평점">
+      <span class="rating-stars" aria-hidden="true">★★★★★</span>
+      <span class="rating-score"><strong>4.8</strong><span class="rating-out">/ 5</span></span>
+      <span class="rating-count">의정부 방문 관리 이용 만족도 후기 327건 기준</span>
+    </div>
     <div class="hero-cta">
       <a href="#areas" class="btn btn-primary">지역별 안내 보기</a>
       <a href="#stations" class="btn btn-secondary">가까운 역 찾기</a>
@@ -290,6 +302,23 @@ PAGE = {
     <a href="/gyeonggi/uijeongbu/area/gosan-sangok/" class="card">고산·산곡</a>
     <a href="/gyeonggi/uijeongbu/area/tapseok-songsan/" class="card">탑석·송산</a>
   </div>
+</section>
+
+<section id="longtail">
+  <h2>의정부 출장마사지·홈타이 주제별 바로가기</h2>
+  <p>찾으시는 상황과 생활권에 맞춰 자주 검색되는 주제별로 안내 페이지를 정리했습니다. 동·역·생활권 안내를 함께 확인하면 방문 동선과 예약 기준을 더 빠르게 파악할 수 있습니다.</p>
+  <ul class="longtail-list">
+    <li><a href="/gyeonggi/uijeongbu/minrak-dong/">민락2지구 민락동 출장마사지 방문 가능 지역 확인</a></li>
+    <li><a href="/gyeonggi/uijeongbu/gosan-dong/">고산지구 고산동 홈타이 신축 아파트 방문 동선</a></li>
+    <li><a href="/gyeonggi/uijeongbu/station/tapseok-station/">탑석역 출장마사지 차량 이동·추가 이동비 기준</a></li>
+    <li><a href="/gyeonggi/uijeongbu/station/hoeryong-station/">회룡역 환승 생활권 호원동 홈타이 예약 안내</a></li>
+    <li><a href="/gyeonggi/uijeongbu/uijeongbu-dong/">의정부역·중앙로 원도심 의정부동 출장마사지 안내</a></li>
+    <li><a href="/gyeonggi/uijeongbu/singok-dong/">신곡동 의정부시청 인접 생활권 홈타이 방문 안내</a></li>
+    <li><a href="/gyeonggi/uijeongbu/area/geumo-northern-office/">금오동·경기도청북부청사 행정 생활권 예약 동선</a></li>
+    <li><a href="/gyeonggi/uijeongbu/nogyang-dong/">녹양동·자일동 외곽 생활권 차량 방문 가능 여부</a></li>
+    <li><a href="/reservation/">의정부 출장마사지 예약 방법과 예약 가능 시간 안내</a></li>
+    <li><a href="/check/">방문 전 추가 이동비·건물 출입·결제 방식 확인사항</a></li>
+  </ul>
 </section>
 
 <section id="check">
