@@ -15,8 +15,7 @@
 build.py                    # 빌드 스크립트
 content/
   site.py                  # 상호·전화·도메인·메뉴
-  root.py                  # 루트(/) → 의정부 홈 리다이렉트
-  main.py                  # 의정부 홈 (메인 페이지)
+  main.py                  # 의정부 홈 (사이트 루트 / 메인 페이지)
   areas.py                 # 지역별 페이지 (16개)
   stations.py              # 역세권 페이지 (20개)
   areas_and_stations.py    # 생활권 페이지 (13개)
@@ -24,8 +23,8 @@ content/
 assets/
   style.css                # 프리미엄 다크 + 오렌지 + 샴페인 골드 + Pretendard
   nav.js                   # 모바일 네비게이션
-gyeonggi/uijeongbu/
-  index.html               # 생성된 의정부 홈
+index.html                  # 생성된 의정부 홈 (사이트 루트)
+gyeonggi/uijeongbu/<슬러그>/  # 지역·역세권·생활권 페이지
 ```
 
 ## 빌드
@@ -38,7 +37,7 @@ python3 build.py
 
 ## URL 구조
 
-- 의정부 홈: `/gyeonggi/uijeongbu/`
+- 의정부 홈: `/` (사이트 루트)
 - 지역: `/gyeonggi/uijeongbu/<동슬러그>/` (예: `/gyeonggi/uijeongbu/minrak-dong/`)
 - 역세권: `/gyeonggi/uijeongbu/station/<역슬러그>/`
 - 생활권: `/gyeonggi/uijeongbu/area/<생활권슬러그>/`

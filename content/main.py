@@ -85,9 +85,8 @@ _breadcrumb_schema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "홈", "item": _BASE + "/"},
-        {"@type": "ListItem", "position": 2, "name": "의정부 출장마사지",
-         "item": _BASE + HOME},
+        {"@type": "ListItem", "position": 1, "name": "의정부 출장마사지",
+         "item": _BASE + "/"},
     ],
 }
 _breadcrumb_schema_str = json.dumps(_breadcrumb_schema, ensure_ascii=False, indent=2)
@@ -108,7 +107,7 @@ _EXTRA_HEAD = f"""<script type="application/ld+json">
 _HERO = """<div class="hero">
   <div class="hero-content">
     <div class="hero-badge">의정부시 전지역 방문 관리</div>
-    <h1 class="hero-title">의정부 출장마사지<br><span class="hero-accent">의정부 홈타이</span><br>지역별 예약 안내</h1>
+    <h1 class="hero-title">의정부 출장마사지<br><span class="hero-accent">홈타이</span><br>지역별 예약 안내</h1>
     <p class="hero-lead">의정부역, 회룡역, 민락동, 신곡동, 호원동, 고산동, 금오동, 가능동 생활권별 방문 가능 지역과 예약 전 확인사항을 안내합니다.</p>
     <div class="rating-badge rating-badge-hero" aria-label="이용 만족도 평점">
       <span class="rating-stars" aria-hidden="true">★★★★★</span>
@@ -143,10 +142,10 @@ _HERO = """<div class="hero">
 </div>"""
 
 PAGE = {
-    "path": "gyeonggi/uijeongbu/",
+    "path": "",
     "title": "의정부 출장마사지｜의정부역·민락·신곡·호원 홈타이 지역 안내",
     "desc": DESC,
-    "h1": "의정부 출장마사지 · 의정부 홈타이 지역별 예약 안내",
+    "h1": "의정부 출장마사지·홈타이 지역별 예약 안내",
     "hero": _HERO,
     "breadcrumb": [],
     "extra_head": _EXTRA_HEAD,

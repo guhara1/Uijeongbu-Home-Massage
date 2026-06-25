@@ -1,7 +1,7 @@
-from . import root, main, areas, stations, areas_and_stations, info
+from . import main, areas, stations, areas_and_stations, info
 
 PAGES = (
-    [root.PAGE, main.PAGE] +
+    [main.PAGE] +
     areas.PAGES +
     stations.PAGES +
     areas_and_stations.PAGES +

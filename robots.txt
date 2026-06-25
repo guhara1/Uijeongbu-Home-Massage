@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://uijeongbu-massage1.pages.dev/sitemap.xml
+Sitemap: https://uijeongbu-home-massage.pages.dev/sitemap.xml

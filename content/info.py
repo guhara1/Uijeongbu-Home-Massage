@@ -18,7 +18,7 @@ reservation = create_info_page(
     title="예약 안내｜의정부 출장마사지·홈타이 예약 방법",
     desc="의정부 출장마사지·홈타이 예약 방법, 취소 정책, 서비스 시간을 확인하세요.",
     h1="예약 안내",
-    breadcrumb=[("의정부", "/gyeonggi/uijeongbu/"), ("예약 안내", "")],
+    breadcrumb=[("의정부", "/"), ("예약 안내", "")],
     body_content="""
 <section>
 <h2>예약 방법</h2>
@@ -141,7 +141,7 @@ check = create_info_page(
     title="이용 전 확인사항｜의정부 출장마사지·홈타이 안전 가이드",
     desc="출장마사지·홈타이 이용 전 반드시 확인해야 할 안전 사항을 안내합니다.",
     h1="이용 전 확인사항",
-    breadcrumb=[("의정부", "/gyeonggi/uijeongbu/"), ("이용 전 확인사항", "")],
+    breadcrumb=[("의정부", "/"), ("이용 전 확인사항", "")],
     body_content="""
 <section>
 <h2>88마사지 이용 시 안내</h2>
@@ -234,7 +234,7 @@ check = create_info_page(
 <section>
 <h2>의정부 지역별 예약 전 추가 확인사항</h2>
 <p>의정부는 생활권에 따라 방문 동선과 확인 항목이 조금씩 다릅니다. <a href="/gyeonggi/uijeongbu/uijeongbu-dong/">의정부동</a>·<a href="/gyeonggi/uijeongbu/station/uijeongbu-jungang-station/">의정부중앙역</a> 같은 원도심 상권은 주차가 어려운 경우가 많아 차량 대기 위치를 미리 정해두는 것이 좋고, <a href="/gyeonggi/uijeongbu/howon-dong/">호원동</a>·<a href="/gyeonggi/uijeongbu/station/hoeryong-station/">회룡역</a> 환승 생활권은 건물 출입 방식과 공동현관 확인이 중요합니다.</p>
-<p><a href="/gyeonggi/uijeongbu/minrak-dong/">민락동</a>·<a href="/gyeonggi/uijeongbu/gosan-dong/">고산동</a>·<a href="/gyeonggi/uijeongbu/station/tapseok-station/">탑석역</a> 일대의 신도시형 주거 생활권은 대단지 아파트가 많아 동·호수와 출입 카드 여부를 정확히 알려주시면 도착이 빨라집니다. 녹양동·자일동·산곡동 등 외곽 생활권은 차량 이동 기준이 적용되며 거리에 따라 추가 이동비가 발생할 수 있으니, 예약 시 방문 가능 주소와 추가 이동비 여부를 반드시 함께 확인하세요. 자세한 지역 안내는 <a href="/gyeonggi/uijeongbu/">의정부 홈</a>에서 확인할 수 있습니다.</p>
+<p><a href="/gyeonggi/uijeongbu/minrak-dong/">민락동</a>·<a href="/gyeonggi/uijeongbu/gosan-dong/">고산동</a>·<a href="/gyeonggi/uijeongbu/station/tapseok-station/">탑석역</a> 일대의 신도시형 주거 생활권은 대단지 아파트가 많아 동·호수와 출입 카드 여부를 정확히 알려주시면 도착이 빨라집니다. 녹양동·자일동·산곡동 등 외곽 생활권은 차량 이동 기준이 적용되며 거리에 따라 추가 이동비가 발생할 수 있으니, 예약 시 방문 가능 주소와 추가 이동비 여부를 반드시 함께 확인하세요. 자세한 지역 안내는 <a href="/">의정부 홈</a>에서 확인할 수 있습니다.</p>
 </section>
 
 <section>
@@ -260,7 +260,7 @@ guide = create_info_page(
     title="홈타이 이용 가이드｜의정부 출장마사지 서비스 설명",
     desc="홈타이 서비스의 개념, 종류, 이용 방법을 안내합니다.",
     h1="홈타이 이용 가이드",
-    breadcrumb=[("의정부", "/gyeonggi/uijeongbu/"), ("이용 가이드", "")],
+    breadcrumb=[("의정부", "/"), ("이용 가이드", "")],
     body_content="""
 <section>
 <h2>홈타이란?</h2>
@@ -359,7 +359,7 @@ guide = create_info_page(
 <section>
 <h2>홈타이 준비와 마무리</h2>
 <p>편안한 관리를 위해 매트나 침대 등 누울 공간을 미리 정리하고, 실내 온도를 적정하게 맞춘 뒤 따뜻한 물과 수건을 준비해 두면 좋습니다. 관리 후에는 충분한 수분 섭취와 휴식으로 회복을 돕고, 무리한 활동이나 과도한 음주는 피하는 것이 좋습니다. 결제는 서비스 완료 후 현장에서 진행되며 결제 방식·취소 기준은 예약 시 안내를 따릅니다.</p>
-<p>88마사지는 위생·안전 기준 안에서 건전한 방문 관리 서비스만 제공하며, 불법·선정적 요청에는 응하지 않습니다. 지역별 안내가 필요하면 <a href="/gyeonggi/uijeongbu/">의정부 홈</a>의 지역·역세권·생활권 안내를 참고하세요.</p>
+<p>88마사지는 위생·안전 기준 안에서 건전한 방문 관리 서비스만 제공하며, 불법·선정적 요청에는 응하지 않습니다. 지역별 안내가 필요하면 <a href="/">의정부 홈</a>의 지역·역세권·생활권 안내를 참고하세요.</p>
 </section>
 
 <section>
@@ -380,7 +380,7 @@ privacy = create_info_page(
     title="개인정보처리방침｜의정부 출장마사지 개인정보 보호",
     desc="88마사지의 개인정보 수집, 이용, 보호 정책을 안내합니다.",
     h1="개인정보처리방침",
-    breadcrumb=[("의정부", "/gyeonggi/uijeongbu/"), ("고객센터", "/support/"), ("개인정보처리방침", "")],
+    breadcrumb=[("의정부", "/"), ("고객센터", "/support/"), ("개인정보처리방침", "")],
     body_content="""
 <section>
 <h2>개인정보처리방침 개요</h2>
@@ -491,7 +491,7 @@ support = create_info_page(
     title="고객센터｜의정부 출장마사지 문의 및 지원",
     desc="88마사지 고객센터 연락처, 문의 방법, 피드백을 안내합니다.",
     h1="고객센터",
-    breadcrumb=[("의정부", "/gyeonggi/uijeongbu/"), ("고객센터", "")],
+    breadcrumb=[("의정부", "/"), ("고객센터", "")],
     body_content="""
 <section>
 <h2>고객센터 안내</h2>

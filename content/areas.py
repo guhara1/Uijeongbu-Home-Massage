@@ -30,8 +30,8 @@ uijeongbu_dong = create_area_page(
     path="gyeonggi/uijeongbu/uijeongbu-dong/",
     title="의정부동 출장마사지｜의정부역·중앙 생활권 홈타이 안내",
     desc="의정부동 출장마사지 예약 전 의정부역, 경전철의정부역, 의정부중앙역 주변을 확인하세요.",
-    h1="의정부동 출장마사지 안내",
-    breadcrumb=[("의정부", "/gyeonggi/uijeongbu/"), ("의정부동", "")],
+    h1="의정부동 출장마사지·홈타이 안내",
+    breadcrumb=[("의정부", "/"), ("의정부동", "")],
     body_content="""
 <section>
 <h2>의정부동은 어떤 동네인가요</h2>
@@ -82,8 +82,8 @@ howon_dong = create_area_page(
     path="gyeonggi/uijeongbu/howon-dong/",
     title="호원동 출장마사지｜회룡역·망월사역 생활권 홈타이 안내",
     desc="호원동 출장마사지 이용 전 회룡역, 망월사역, 발곡역 인접 생활권을 확인하세요.",
-    h1="호원동 출장마사지 안내",
-    breadcrumb=[("의정부", "/gyeonggi/uijeongbu/"), ("호원동", "")],
+    h1="호원동 출장마사지·홈타이 안내",
+    breadcrumb=[("의정부", "/"), ("호원동", "")],
     body_content="""
 <section>
 <h2>호원동의 위치와 생활권</h2>
@@ -128,8 +128,8 @@ jangam_dong = create_area_page(
     path="gyeonggi/uijeongbu/jangam-dong/",
     title="장암동 출장마사지｜장암역·발곡역 인접 생활권 홈타이 안내",
     desc="장암동 출장마사지 예약 전 장암역, 발곡역, 호원동 인접 생활권을 확인하세요.",
-    h1="장암동 출장마사지 안내",
-    breadcrumb=[("의정부", "/gyeonggi/uijeongbu/"), ("장암동", "")],
+    h1="장암동 출장마사지·홈타이 안내",
+    breadcrumb=[("의정부", "/"), ("장암동", "")],
     body_content="""
 <section>
 <h2>장암동은 조용한 주거 지역입니다</h2>
@@ -180,8 +180,8 @@ singok_dong = create_area_page(
     path="gyeonggi/uijeongbu/singok-dong/",
     title="신곡동 출장마사지｜동오역·새말역 생활권 홈타이 안내",
     desc="신곡동 출장마사지 예약 전 동오역, 새말역, 의정부시청역 주변을 확인하세요.",
-    h1="신곡동 출장마사지 안내",
-    breadcrumb=[("의정부", "/gyeonggi/uijeongbu/"), ("신곡동", "")],
+    h1="신곡동 출장마사지·홈타이 안내",
+    breadcrumb=[("의정부", "/"), ("신곡동", "")],
     body_content="""
 <section>
 <h2>신곡동은 의정부 동부의 대규모 주거지입니다</h2>
@@ -232,8 +232,8 @@ minrak_dong = create_area_page(
     path="gyeonggi/uijeongbu/minrak-dong/",
     title="민락동 출장마사지｜송산역·낙양동 인접 생활권 홈타이 안내",
     desc="민락동 출장마사지 이용 전 송산역, 탑석역, 낙양동 인접 생활권을 확인하세요.",
-    h1="민락동 출장마사지 안내",
-    breadcrumb=[("의정부", "/gyeonggi/uijeongbu/"), ("민락동", "")],
+    h1="민락동 출장마사지·홈타이 안내",
+    breadcrumb=[("의정부", "/"), ("민락동", "")],
     body_content="""
 <section>
 <h2>민락동은 의정부 동부의 신도시 상권입니다</h2>
@@ -284,8 +284,8 @@ nagyang_dong = create_area_page(
     path="gyeonggi/uijeongbu/nagyang-dong/",
     title="낙양동 출장마사지｜민락·고산 인접 생활권 홈타이 안내",
     desc="낙양동 출장마사지 예약 전 민락동, 고산동, 송산역, 탑석역 인접 생활권을 확인하세요.",
-    h1="낙양동 출장마사지 안내",
-    breadcrumb=[("의정부", "/gyeonggi/uijeongbu/"), ("낙양동", "")],
+    h1="낙양동 출장마사지·홈타이 안내",
+    breadcrumb=[("의정부", "/"), ("낙양동", "")],
     body_content="""
 <section>
 <h2>낙양동은 두 생활권 사이의 연결 지대입니다</h2>
@@ -336,8 +336,8 @@ yonghyeon_dong = create_area_page(
     path="gyeonggi/uijeongbu/yonghyeon-dong/",
     title="용현동 출장마사지｜곤제역·어룡역 생활권 홈타이 안내",
     desc="용현동 출장마사지 예약 전 곤제역, 어룡역, 송산역 인접 생활권을 확인하세요.",
-    h1="용현동 출장마사지 안내",
-    breadcrumb=[("의정부", "/gyeonggi/uijeongbu/"), ("용현동", "")],
+    h1="용현동 출장마사지·홈타이 안내",
+    breadcrumb=[("의정부", "/"), ("용현동", "")],
     body_content="""
 <section>
 <h2>용현동은 직장 생활권과 맞닿아 있습니다</h2>
@@ -388,8 +388,8 @@ geumo_dong = create_area_page(
     path="gyeonggi/uijeongbu/geumo-dong/",
     title="금오동 출장마사지｜경기도청북부청사·효자역 생활권 홈타이 안내",
     desc="금오동 출장마사지 예약 전 경기도청북부청사역, 효자역, 자금동 인접 생활권을 확인하세요.",
-    h1="금오동 출장마사지 안내",
-    breadcrumb=[("의정부", "/gyeonggi/uijeongbu/"), ("금오동", "")],
+    h1="금오동 출장마사지·홈타이 안내",
+    breadcrumb=[("의정부", "/"), ("금오동", "")],
     body_content="""
 <section>
 <h2>금오동은 공공기관과 주거가 섞인 생활권입니다</h2>
@@ -440,8 +440,8 @@ ganeung_dong = create_area_page(
     path="gyeonggi/uijeongbu/ganeung-dong/",
     title="가능동 출장마사지｜가능역·흥선동 생활권 홈타이 안내",
     desc="가능동 출장마사지 예약 전 가능역, 흥선동, 녹양동 인접 생활권을 확인하세요.",
-    h1="가능동 출장마사지 안내",
-    breadcrumb=[("의정부", "/gyeonggi/uijeongbu/"), ("가능동", "")],
+    h1="가능동 출장마사지·홈타이 안내",
+    breadcrumb=[("의정부", "/"), ("가능동", "")],
     body_content="""
 <section>
 <h2>가능동은 원도심 서편의 생활권입니다</h2>
@@ -492,8 +492,8 @@ heungseon_dong = create_area_page(
     path="gyeonggi/uijeongbu/heungseon-dong/",
     title="흥선동 출장마사지｜흥선역·의정부시청 인접 생활권 홈타이 안내",
     desc="흥선동 출장마사지 예약 전 흥선역, 가능동, 의정부시청 인접 생활권을 확인하세요.",
-    h1="흥선동 출장마사지 안내",
-    breadcrumb=[("의정부", "/gyeonggi/uijeongbu/"), ("흥선동", "")],
+    h1="흥선동 출장마사지·홈타이 안내",
+    breadcrumb=[("의정부", "/"), ("흥선동", "")],
     body_content="""
 <section>
 <h2>흥선동은 원도심과 행정 생활권을 잇습니다</h2>
@@ -544,8 +544,8 @@ nogyang_dong = create_area_page(
     path="gyeonggi/uijeongbu/nogyang-dong/",
     title="녹양동 출장마사지｜녹양역·자금동 생활권 홈타이 안내",
     desc="녹양동 출장마사지 예약 전 녹양역, 자금동, 가능동 인접 생활권을 확인하세요.",
-    h1="녹양동 출장마사지 안내",
-    breadcrumb=[("의정부", "/gyeonggi/uijeongbu/"), ("녹양동", "")],
+    h1="녹양동 출장마사지·홈타이 안내",
+    breadcrumb=[("의정부", "/"), ("녹양동", "")],
     body_content="""
 <section>
 <h2>녹양동은 의정부 북부 생활권입니다</h2>
@@ -596,8 +596,8 @@ gosan_dong = create_area_page(
     path="gyeonggi/uijeongbu/gosan-dong/",
     title="고산동 출장마사지｜고산지구·민락 인접 생활권 홈타이 안내",
     desc="고산동 출장마사지 예약 전 고산지구, 산곡동, 민락동 인접 생활권을 확인하세요.",
-    h1="고산동 출장마사지 안내",
-    breadcrumb=[("의정부", "/gyeonggi/uijeongbu/"), ("고산동", "")],
+    h1="고산동 출장마사지·홈타이 안내",
+    breadcrumb=[("의정부", "/"), ("고산동", "")],
     body_content="""
 <section>
 <h2>고산동은 의정부의 새 주거지입니다</h2>
@@ -648,8 +648,8 @@ sangok_dong = create_area_page(
     path="gyeonggi/uijeongbu/sangok-dong/",
     title="산곡동 출장마사지｜고산동·자일동 인접 생활권 홈타이 안내",
     desc="산곡동 출장마사지 예약 전 고산동, 자일동, 녹양동 인접 생활권을 확인하세요.",
-    h1="산곡동 출장마사지 안내",
-    breadcrumb=[("의정부", "/gyeonggi/uijeongbu/"), ("산곡동", "")],
+    h1="산곡동 출장마사지·홈타이 안내",
+    breadcrumb=[("의정부", "/"), ("산곡동", "")],
     body_content="""
 <section>
 <h2>산곡동은 외곽 생활권입니다</h2>
@@ -700,8 +700,8 @@ jail_dong = create_area_page(
     path="gyeonggi/uijeongbu/jail-dong/",
     title="자일동 출장마사지｜녹양·금오 인접 생활권 홈타이 안내",
     desc="자일동 출장마사지 예약 전 금오동, 녹양동, 산곡동 인접 생활권을 확인하세요.",
-    h1="자일동 출장마사지 안내",
-    breadcrumb=[("의정부", "/gyeonggi/uijeongbu/"), ("자일동", "")],
+    h1="자일동 출장마사지·홈타이 안내",
+    breadcrumb=[("의정부", "/"), ("자일동", "")],
     body_content="""
 <section>
 <h2>자일동은 한적한 외곽 생활권입니다</h2>
@@ -752,8 +752,8 @@ songsan_area = create_area_page(
     path="gyeonggi/uijeongbu/songsan-area/",
     title="송산동 출장마사지｜용현·민락·낙양 생활권 홈타이 안내",
     desc="송산 생활권 출장마사지 예약 전 용현동, 민락동, 낙양동, 고산동을 확인하세요.",
-    h1="송산 생활권 출장마사지 안내",
-    breadcrumb=[("의정부", "/gyeonggi/uijeongbu/"), ("송산 생활권", "")],
+    h1="송산 생활권 출장마사지·홈타이 안내",
+    breadcrumb=[("의정부", "/"), ("송산 생활권", "")],
     body_content="""
 <section>
 <h2>송산 생활권은 의정부 동부의 허브입니다</h2>
@@ -804,8 +804,8 @@ jageum_area = create_area_page(
     path="gyeonggi/uijeongbu/jageum-area/",
     title="자금동 출장마사지｜금오·녹양 인접 생활권 홈타이 안내",
     desc="자금 생활권 출장마사지 예약 전 금오동, 녹양동, 효자역 인접권을 확인하세요.",
-    h1="자금 생활권 출장마사지 안내",
-    breadcrumb=[("의정부", "/gyeonggi/uijeongbu/"), ("자금 생활권", "")],
+    h1="자금 생활권 출장마사지·홈타이 안내",
+    breadcrumb=[("의정부", "/"), ("자금 생활권", "")],
     body_content="""
 <section>
 <h2>자금 생활권은 금오·녹양 사이의 주거지입니다</h2>

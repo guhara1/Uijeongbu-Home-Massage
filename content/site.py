@@ -1,14 +1,14 @@
 # 의정부시 출장마사지 사이트 공통 설정
 
-BASE_URL = "https://uijeongbu-massage1.pages.dev"
+BASE_URL = "https://uijeongbu-home-massage.pages.dev"
 
 BRAND = "88마사지"
 BRAND_MARK = "88"
 PHONE = "0508-202-4719"
 PHONE_DISPLAY = "0508-202-4719"
 
-# 메인 진입 경로 (의정부 홈)
-HOME = "/gyeonggi/uijeongbu/"
+# 메인 진입 경로 (의정부 홈 = 사이트 루트)
+HOME = "/"
 
 # 외부 문의 링크 (텔레그램)
 TELEGRAM_BUILD = "https://t.me/googleseolab"     # 웹사이트 제작문의
